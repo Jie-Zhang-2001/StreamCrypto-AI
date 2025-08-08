@@ -26,6 +26,10 @@ jobs:
   lint:
     name: Lint Go Code
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: producer  # run all steps from inside producer/
+
     steps:
       - uses: actions/checkout@v4
 
@@ -33,8 +37,7 @@ jobs:
         uses: golangci/golangci-lint-action@v4
         with:
           version: v1.55.2
-          args: --out-format=colored-line-number
+          args: --timeout=2m --out-format=colored-line-number
 
-      - name: Run lint
-        run: golangci-lint run .
-        working-directory: ./producer
+      - name: Run golangci-lint
+        run: golangci-lint run ./...
