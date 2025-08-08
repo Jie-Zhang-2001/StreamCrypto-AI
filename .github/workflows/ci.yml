@@ -31,13 +31,8 @@ jobs:
 
       - name: Install golangci-lint
         uses: golangci/golangci-lint-action@v4
-        with:
-          version: v1.55.2
-
-      - name: Add golangci-lint to PATH
-        run: echo "$(go env GOPATH)/bin" >> $GITHUB_PATH 
 
       - name: Run lint
         run: |
           cd producer
-          golangci-lint run
+          golangci-lint run ./producer
