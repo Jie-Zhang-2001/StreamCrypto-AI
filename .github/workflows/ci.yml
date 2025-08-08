@@ -35,4 +35,4 @@ jobs:
       - name: Run lint
         run: |
           cd producer
-          golangci-lint run ./producer
+          golangci-lint run .
