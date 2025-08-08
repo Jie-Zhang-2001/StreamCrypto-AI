@@ -26,10 +26,6 @@ jobs:
   lint:
     name: Lint Go Code
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: producer  # run all steps from inside producer/
-
     steps:
       - uses: actions/checkout@v4
 
@@ -37,7 +33,11 @@ jobs:
         uses: golangci/golangci-lint-action@v4
         with:
           version: v1.55.2
-          args: --timeout=2m --out-format=colored-line-number
 
-      - name: Run golangci-lint
-        run: golangci-lint run ./...
+      - name: Add golangci-lint to PATH
+        run: echo "$(go env GOPATH)/bin" >> $GITHUB_PATH 
+
+      - name: Run lint
+        run: |
+          cd producer
+          golangci-lint run
