@@ -31,8 +31,8 @@ jobs:
           go-version: stable
       - name: Install golangci-lint
         uses: golangci/golangci-lint-action@v8
+        with:
+          working-directory: producer
 
       - name: Run lint
-        working-directory: producer
-        run: |
-          golangci-lint run
+        run: golangci-lint run
