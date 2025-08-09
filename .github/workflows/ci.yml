@@ -36,3 +36,4 @@ jobs:
 
       - name: Run lint
         run: golangci-lint run
+        working-directory: producer
