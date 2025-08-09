@@ -33,6 +33,6 @@ jobs:
         uses: golangci/golangci-lint-action@v8
 
       - name: Run lint
+        working-directory: producer
         run: |
-          cd producer
           golangci-lint run
